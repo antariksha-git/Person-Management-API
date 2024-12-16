@@ -28,7 +28,7 @@ public class PersonService {
 		return personRepository
 				.findById(id)
 				.map(person -> PersonMapper.toPersonResponse(person))
-				.orElseThrow(() -> new PersonNotFoundException(404, "Not found"));
+				.orElseThrow(() -> new PersonNotFoundException(404, "User not found by given id"));
 	}
 
 }
