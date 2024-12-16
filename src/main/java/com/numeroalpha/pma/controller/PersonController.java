@@ -2,6 +2,7 @@ package com.numeroalpha.pma.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,14 @@ public class PersonController {
 	public ResponseEntity<ResponseStructure<PersonResponse>> getPersonById(@PathVariable int personId) {
 		return AppResponseStructure
 				.getResponseEntity(HttpStatus.OK, 
-						new ResponseStructure<>(200, "User found Successfully!", personService.getPersonById(personId)));
+						new ResponseStructure<>(200, "User found successfully!", personService.getPersonById(personId)));
+	}
+	
+	@DeleteMapping("/{personId}")
+	public ResponseEntity<ResponseStructure<PersonResponse>> deletePersonById(@PathVariable int personId) {
+		return AppResponseStructure
+				.getResponseEntity(HttpStatus.OK, 
+						new ResponseStructure<>(200, "Deleted user successfully!", personService.deletePersonById(personId)));
 	}
 
 }
