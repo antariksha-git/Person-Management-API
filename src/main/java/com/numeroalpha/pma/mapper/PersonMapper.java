@@ -19,6 +19,7 @@ public class PersonMapper {
 		personResponse.setAge(person.getAge());
 		personResponse.setName(person.getName());
 		personResponse.setPersonId(person.getPersonId());
+		personResponse.setPersonAddressResponse(PersonAddressMapper.toPersonAddressResponse(person.getPersonAddress()));
 		
 		return personResponse;
 	}
