@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: Person-Management-API
+
+  #datasource configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/pma_db
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #jpa and hibernate configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
