@@ -8,4 +8,5 @@ import lombok.Setter;
 public class PersonRequest {
 	private String name;
 	private int age;
+	private PersonAddressRequest personAddressRequest;
 }
