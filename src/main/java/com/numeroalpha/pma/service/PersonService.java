@@ -3,6 +3,7 @@ package com.numeroalpha.pma.service;
 import org.springframework.stereotype.Service;
 
 import com.numeroalpha.pma.entity.Person;
+import com.numeroalpha.pma.exception.PersonNotFoundException;
 import com.numeroalpha.pma.mapper.PersonMapper;
 import com.numeroalpha.pma.repository.PersonRepository;
 import com.numeroalpha.pma.requestdto.PersonRequest;
@@ -28,7 +29,7 @@ public class PersonService {
 		return personRepository
 				.findById(id)
 				.map(person -> PersonMapper.toPersonResponse(person))
-				.orElseThrow();
+				.orElseThrow(() -> new PersonNotFoundException(404, "Person not found by the given id"));
 	}
 
 }
