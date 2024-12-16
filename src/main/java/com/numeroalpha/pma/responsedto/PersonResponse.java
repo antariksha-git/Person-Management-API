@@ -9,4 +9,5 @@ public class PersonResponse {
 	private int personId;
 	private String name;
 	private int age;
+	private PersonAddressResponse personAddressResponse;
 }
