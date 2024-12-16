@@ -3,11 +3,9 @@ package com.numeroalpha.pma.service;
 import org.springframework.stereotype.Service;
 
 import com.numeroalpha.pma.entity.Person;
-import com.numeroalpha.pma.entity.PersonAddress;
 import com.numeroalpha.pma.exception.PersonNotFoundException;
 import com.numeroalpha.pma.mapper.PersonAddressMapper;
 import com.numeroalpha.pma.mapper.PersonMapper;
-import com.numeroalpha.pma.repository.PersonAddressRepository;
 import com.numeroalpha.pma.repository.PersonRepository;
 import com.numeroalpha.pma.requestdto.PersonRequest;
 import com.numeroalpha.pma.responsedto.PersonResponse;
@@ -19,7 +17,6 @@ import lombok.AllArgsConstructor;
 public class PersonService {
 	
 	private final PersonRepository personRepository;
-	private final PersonAddressRepository personAddressRepository;
 	
 	public PersonResponse createPerson(PersonRequest personRequest) {
 		
@@ -34,6 +31,15 @@ public class PersonService {
 				.findById(id)
 				.map(person -> PersonMapper.toPersonResponse(person))
 				.orElseThrow(() -> new PersonNotFoundException(404, "User not found by given id"));
+	}
+
+	public PersonResponse deletePersonById(int personId) {
+		Person person = personRepository
+				.findById(personId)
+				.orElseThrow(() -> new PersonNotFoundException(404, "User not found by given id"));
+		personRepository.delete(person);
+		
+		return PersonMapper.toPersonResponse(person);
 	}
 
 }
