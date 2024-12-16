@@ -16,5 +16,9 @@ public class PersonService {
 	public Person createPerson(Person person) {
 		return personRepository.save(person);
 	}
+	
+	public Person getPersonById(int id) {
+		return personRepository.findById(id).orElseThrow();
+	}
 
 }
