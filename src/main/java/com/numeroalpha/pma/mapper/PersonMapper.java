@@ -6,7 +6,7 @@ import com.numeroalpha.pma.responsedto.PersonResponse;
 
 public class PersonMapper {
 	
-	public Person toPersonEntity(PersonRequest personRequest) {
+	public static Person toPersonEntity(PersonRequest personRequest) {
 		Person person = new Person();
 		person.setAge(personRequest.getAge());
 		person.setName(personRequest.getName());
@@ -14,7 +14,7 @@ public class PersonMapper {
 		return person;
 	}
 	
-	public PersonResponse toPersonResponse(Person person) {
+	public static PersonResponse toPersonResponse(Person person) {
 		PersonResponse personResponse = new PersonResponse();
 		personResponse.setAge(person.getAge());
 		personResponse.setName(person.getName());

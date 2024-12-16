@@ -3,7 +3,10 @@ package com.numeroalpha.pma.service;
 import org.springframework.stereotype.Service;
 
 import com.numeroalpha.pma.entity.Person;
+import com.numeroalpha.pma.mapper.PersonMapper;
 import com.numeroalpha.pma.repository.PersonRepository;
+import com.numeroalpha.pma.requestdto.PersonRequest;
+import com.numeroalpha.pma.responsedto.PersonResponse;
 
 import lombok.AllArgsConstructor;
 
@@ -13,12 +16,19 @@ public class PersonService {
 	
 	private final PersonRepository personRepository;
 	
-	public Person createPerson(Person person) {
-		return personRepository.save(person);
+	public PersonResponse createPerson(PersonRequest personRequest) {
+		return PersonMapper
+				.toPersonResponse(personRepository
+						.save(PersonMapper
+								.toPersonEntity(personRequest)));
+		
 	}
 	
-	public Person getPersonById(int id) {
-		return personRepository.findById(id).orElseThrow();
+	public PersonResponse getPersonById(int id) {
+		return personRepository
+				.findById(id)
+				.map(person -> PersonMapper.toPersonResponse(person))
+				.orElseThrow();
 	}
 
 }
