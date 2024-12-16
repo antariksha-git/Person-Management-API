@@ -2,8 +2,12 @@ package com.numeroalpha.pma.service;
 
 import org.springframework.stereotype.Service;
 
+import com.numeroalpha.pma.entity.Person;
+import com.numeroalpha.pma.entity.PersonAddress;
 import com.numeroalpha.pma.exception.PersonNotFoundException;
+import com.numeroalpha.pma.mapper.PersonAddressMapper;
 import com.numeroalpha.pma.mapper.PersonMapper;
+import com.numeroalpha.pma.repository.PersonAddressRepository;
 import com.numeroalpha.pma.repository.PersonRepository;
 import com.numeroalpha.pma.requestdto.PersonRequest;
 import com.numeroalpha.pma.responsedto.PersonResponse;
@@ -15,12 +19,13 @@ import lombok.AllArgsConstructor;
 public class PersonService {
 	
 	private final PersonRepository personRepository;
+	private final PersonAddressRepository personAddressRepository;
 	
 	public PersonResponse createPerson(PersonRequest personRequest) {
-		return PersonMapper
-				.toPersonResponse(personRepository
-						.save(PersonMapper
-								.toPersonEntity(personRequest)));
+		
+		Person person = PersonMapper.toPersonEntity(personRequest);
+		person.setPersonAddress(PersonAddressMapper.toPersonAddressEntity(personRequest.getPersonAddressRequest()));
+		return PersonMapper.toPersonResponse(personRepository.save(person));
 		
 	}
 	
