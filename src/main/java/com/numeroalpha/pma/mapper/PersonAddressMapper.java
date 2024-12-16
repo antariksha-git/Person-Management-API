@@ -16,9 +16,9 @@ public class PersonAddressMapper {
 	
 	public static PersonAddressResponse toPersonAddressResponse(PersonAddress personAddress) {
 		PersonAddressResponse personAddressResponse = new PersonAddressResponse();
-		personAddress.setAddressId(personAddress.getAddressId());
-		personAddress.setState(personAddress.getState());
-		personAddress.setStreet(personAddress.getStreet());
+		personAddressResponse.setAddressId(personAddress.getAddressId());
+		personAddressResponse.setState(personAddress.getState());
+		personAddressResponse.setStreet(personAddress.getStreet());
 		
 		return personAddressResponse;
 	}
