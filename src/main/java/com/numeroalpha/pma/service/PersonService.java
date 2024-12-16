@@ -2,7 +2,6 @@ package com.numeroalpha.pma.service;
 
 import org.springframework.stereotype.Service;
 
-import com.numeroalpha.pma.entity.Person;
 import com.numeroalpha.pma.exception.PersonNotFoundException;
 import com.numeroalpha.pma.mapper.PersonMapper;
 import com.numeroalpha.pma.repository.PersonRepository;
