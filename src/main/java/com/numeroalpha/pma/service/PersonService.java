@@ -29,7 +29,7 @@ public class PersonService {
 		return personRepository
 				.findById(id)
 				.map(person -> PersonMapper.toPersonResponse(person))
-				.orElseThrow(() -> new PersonNotFoundException(404, "Person not found by the given id"));
+				.orElseThrow(() -> new PersonNotFoundException(404, "Not found"));
 	}
 
 }
