@@ -13,11 +13,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.numeroalpha.pma.responsestructure.ErrorResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    	
+    	log.error("Class: {} | Method: {} | Status Code: {} | Error: {}",
+                this.getClass().getName(),
+                "hanldeValidationExceptions",
+                400,
+                ex.getMessage(), ex);
+    	
         Map<String, String> fieldErrors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
