@@ -17,16 +17,19 @@ import com.numeroalpha.pma.responsestructure.ResponseStructure;
 import com.numeroalpha.pma.service.PersonService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("api/person")
 @AllArgsConstructor
+@Slf4j
 public class PersonController {
 	
 	private final PersonService personService;
 	
 	@PostMapping
 	public ResponseEntity<ResponseStructure<PersonResponse>> createPerson(@RequestBody PersonRequest personRequest) {
+		log.info("Received request for creating person");
 		return AppResponseStructure
 				.getResponseEntity(HttpStatus.CREATED, 
 						new ResponseStructure<>(201, "User created successfully!", personService.createPerson(personRequest)));
@@ -34,6 +37,7 @@ public class PersonController {
 	
 	@GetMapping("/{personId}")
 	public ResponseEntity<ResponseStructure<PersonResponse>> getPersonById(@PathVariable int personId) {
+		log.info("Received request to get person with the id {}", personId);
 		return AppResponseStructure
 				.getResponseEntity(HttpStatus.OK, 
 						new ResponseStructure<>(200, "User found successfully!", personService.getPersonById(personId)));
@@ -41,6 +45,7 @@ public class PersonController {
 	
 	@DeleteMapping("/{personId}")
 	public ResponseEntity<ResponseStructure<PersonResponse>> deletePersonById(@PathVariable int personId) {
+		log.info("Received request to delete person with the id {}", personId);
 		return AppResponseStructure
 				.getResponseEntity(HttpStatus.OK, 
 						new ResponseStructure<>(200, "Deleted user successfully!", personService.deletePersonById(personId)));
