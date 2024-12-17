@@ -16,6 +16,7 @@ import com.numeroalpha.pma.responsestructure.AppResponseStructure;
 import com.numeroalpha.pma.responsestructure.ResponseStructure;
 import com.numeroalpha.pma.service.PersonService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +29,7 @@ public class PersonController {
 	private final PersonService personService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<PersonResponse>> createPerson(@RequestBody PersonRequest personRequest) {
+	public ResponseEntity<ResponseStructure<PersonResponse>> createPerson(@RequestBody @Valid PersonRequest personRequest) {
 		log.info("Received request for creating person");
 		return AppResponseStructure
 				.getResponseEntity(HttpStatus.CREATED, 
